@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="content" th:fragment="create">
+    	<form th:action="@{/dir/create}" th:object="${directoryForm}" method="post">
+    		<input type="hidden" th:field="*{id}"/>
+    		<div class="form-group">
+    			<label for="name">ディレクトリ名</label>
+    			<input type="text" 
+    				th:errorclass="is-invalid"
+    				th:field="*{name}"/>
+    			<div class="invalid-feedback" th:errors="*{name}"></div>
+    		</div>
+    		<div class="text-center">
+    			<button type="submit">保存</button>
+    		</div>
+    	</form>
+    </div>    
+</body>
+</html>

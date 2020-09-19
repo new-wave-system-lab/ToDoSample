@@ -9,8 +9,8 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -25,7 +25,7 @@ public class Directory {
 	private Long id;
 
 	@NotNull
-	@Max(100)
+	@Size(max=100)
 	private String name;
 	
 	@NotNull

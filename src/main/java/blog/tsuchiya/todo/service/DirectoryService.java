@@ -17,4 +17,8 @@ public class DirectoryService {
 	public List<Directory> getDirectoriesByUserId(Long id){
 		return dirRep.findByUserId(id);
 	}
+	
+	public void save(Directory d) {
+		dirRep.save(d);
+	}
 }
