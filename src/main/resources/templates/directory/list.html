@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+</head>
+<body>
+	<div class="content" th:fragment="list">
+		<table>
+			<tr>
+				<th>タイトル</th>
+				<th>状態</th>
+				<th></th>
+			</tr>
+			<tr th:each="toDo : ${toDos}">
+				<td th:text="*{name}">ToToタイトル</td>
+				<td>
+					<span class="bg-primary" 
+						th:if="*{status} == ToDoStatus.NOT_STARTED.getInt()">未着手</span>
+					<span class="bg-success" 
+						th:if="*{status} == ToDoStatus.PROGRESSING.getInt()">進行中</span>
+					<span class="bg-secondary" 
+						th:if="*{status} == ToDoStatus.END.getInt()">完了</span>
+				</td>
+				<td>
+					<a th:href="@{'/todo/' + *{id}}"></a>
+				</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>

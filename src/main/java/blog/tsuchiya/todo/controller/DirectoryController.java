@@ -9,6 +9,7 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
@@ -53,5 +54,13 @@ public class DirectoryController {
 		d.setUser(todoUser);
 		dirService.save(d);
 		return "redirect:/todo";
+	}
+	
+	@GetMapping("/{id}")
+	public String getDirectoryId(@PathVariable Long id, Model model) {
+		
+		model.addAttribute("contents", "layout/main :: main");
+		model.addAttribute("main", "directory/list :: list");
+		return "layout/layout";
 	}
 }
