@@ -5,11 +5,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 
-import lombok.Data;
+import lombok.Getter;
+import lombok.Setter;
 
-@Data
+@Getter
+@Setter
 @Entity
 public class ToDo {
 
@@ -18,11 +21,17 @@ public class ToDo {
 	private Long id;
 
 	@NotNull
+	@Max(100)
 	private String name;
 	
 	@NotNull
 	private Integer status;
 	
+	@NotNull
 	@ManyToOne
+	private ToDoUser user;
+
+	@ManyToOne
+	@NotNull
 	private Directory directory;
 }

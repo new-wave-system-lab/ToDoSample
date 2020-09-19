@@ -1,9 +1,13 @@
 package blog.tsuchiya.todo.model;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -35,4 +39,7 @@ public class ToDoUser {
 	@Max(20)
 	private String role;
 	
+	@OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+	private List<Directory> directories;
+
 }

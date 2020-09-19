@@ -7,8 +7,18 @@
 	<th:block th:fragment="main">
 		<div class="container">
 			<div class="row">
-				<div class="col-3">フォルダ一覧を実装</div>
-				<div class="col-9">
+				<div class="col-4 bg-secondary text-light">
+					<h2 class="h3 bg-primary">ディレクトリ一覧</h2>
+					<div class="bg-success">
+						<a class="text-light d-block" th:href="@{/dir/create}">ディレクトリを追加する</a>
+					</div>
+					<div class="my-1" th:each="directory : ${directories}">
+						<a th:href="@{'/dir/' + ${directory.id}}"
+							th:text="${directory.name}"
+							class="py-1 border-primary d-block">ディレクトリ名</a>
+					</div>
+				</div>
+				<div class="col-8">
 					<div th:include="__${main}__"></div>
 				</div>
 			</div>

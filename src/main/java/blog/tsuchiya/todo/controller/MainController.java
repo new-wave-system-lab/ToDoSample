@@ -6,7 +6,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class MainController {
-
+	
+	
 	@GetMapping("/")
 	public String getRoot(Model model) {
 		model.addAttribute("contents", "login :: login");
@@ -15,6 +16,7 @@ public class MainController {
 	
 	@GetMapping("/todo")
 	public String getTodo(Model model) {
+		// 表示する画面を指定
 		model.addAttribute("contents", "layout/main :: main");
 		model.addAttribute("main", "empty :: empty");
 		return "layout/layout";

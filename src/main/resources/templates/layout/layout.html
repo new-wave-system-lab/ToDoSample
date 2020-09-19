@@ -1,25 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ログインページ</title>
-    <link rel="stylesheet" th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}" />
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ログインページ</title>
+<link rel="stylesheet"
+	th:href="@{/webjars/bootstrap/4.5.2/css/bootstrap.min.css}" />
 </head>
 <body>
-    <header class="my-2">
-        <nav class="navbar navbar-dark bg-dark">
-            <a th:href="@{/}" class="navbar-brand">ToDoアプリ</a>
-        </nav>
-    </header>
-    <main>
-        <th:block th:include="__${contents}__"></th:block>
-    </main>
-    <footer class="text-center my-2">
-        Copyright 2020 土谷俊介
-    </footer>
-    <script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
-    <script th:src="@{/webjars/popper.js/1.16.0/umd/popper.min.js}"></script>
-    <script th:src="@{/webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
+	<div class="container">
+		<header class="my-2">
+			<nav class="navbar navbar-dark bg-dark">
+				<a th:href="@{/}" class="navbar-brand">ToDoアプリ</a>
+			</nav>
+		</header>
+		<main>
+			<th:block th:include="__${contents}__"></th:block>
+		</main>
+		<footer class="text-center my-2 bg-dark text-light"> Copyright 2020 土谷俊介 </footer>
+	</div>
+	<script th:src="@{/webjars/jquery/3.5.1/jquery.min.js}"></script>
+	<script th:src="@{/webjars/popper.js/1.16.0/umd/popper.min.js}"></script>
+	<script th:src="@{/webjars/bootstrap/4.5.2/js/bootstrap.min.js}"></script>
 </body>
 </html>
