@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import blog.tsuchiya.todo.ToDoStatus;
 import blog.tsuchiya.todo.model.Directory;
 import blog.tsuchiya.todo.model.DirectoryForm;
 import blog.tsuchiya.todo.model.ToDo;
@@ -79,6 +80,7 @@ public class DirectoryController {
 			throw new IllegalAccessException("アクセス権を持たないディレクトリを編集しようとしました。");
 		}
 		// 各種パラメータをモデルに格納
+		model.addAttribute("statuses", ToDoStatus.values());
 		model.addAttribute("directory", d);
 		model.addAttribute("toDos", toDos);
 		model.addAttribute("contents", "layout/main :: main");

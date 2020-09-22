@@ -9,10 +9,21 @@
     		<input type="hidden" th:field="*{id}"/>
     		<div class="form-group">
     			<label for="name">ToDo名</label>
-    			<input type="text" 
+    			<input class="form-control" type="text" 
     				th:errorclass="is-invalid"
     				th:field="*{name}"/>
     			<div class="invalid-feedback" th:errors="*{name}"></div>
+    		</div>
+    		<div class="form-group">
+    			<label for="directoryId">ディレクトリ名</label>
+    			<select th:field="*{directoryId}"
+    				class="form-control"
+    				th:errorclass="is-invalid">
+    				<option th:each="directory : ${directories}" 
+    					th:value="${directory.id}"
+    					th:text="${directory.name}"></option>
+    			</select>
+    			<div class="invalid-feedback" th:errors="*{directoryId}"></div>
     		</div>
     		<div class="text-center">
     			<button type="submit">保存</button>

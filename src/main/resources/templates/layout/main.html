@@ -12,6 +12,9 @@
 					<div class="bg-success">
 						<a class="text-light d-block" th:href="@{/dir/create}">ディレクトリを追加する</a>
 					</div>
+					<div class="bg-success">
+						<a class="text-light d-block mt-2" th:href="@{/todo/create}">ToDoを追加する</a>
+					</div>
 					<div class="my-1" th:each="directory : ${directories}">
 						<a th:href="@{'/dir/' + ${directory.id}}"
 							th:text="${directory.name}"

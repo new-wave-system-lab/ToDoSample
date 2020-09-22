@@ -23,9 +23,9 @@
 				</tr>
 				<tr th:each="toDo : ${toDos}">
 					<td th:text="${toDo.name}">ToDoタイトル</td>
-					<td><span class="bg-primary" th:if="${toDo.status} == 1">未着手</span>
-						<span class="bg-success" th:if="${toDo.status} == 2">進行中</span> <span
-						class="bg-secondary" th:if="${toDo.status} == 3">完了</span></td>
+					<td><span th:each="status : ${statuses}"
+						th:if="${toDo.status} == ${status.status}"
+						th:class="${status.bgClass}" th:text="${status.name}"> </span></td>
 					<td><a th:href="@{'/todo/' + ${toDo.id}} + '/edit'">編集</a> <a
 						th:href="@{'/todo/' + ${toDo.id}} + '/delete'">削除</a></td>
 				</tr>

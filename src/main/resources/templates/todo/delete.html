@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="content" th:fragment="delete">
+    	<form th:action="@{'/todo/' + ${id} + '/delete'}" th:object="${toDoForm}" method="post">
+    		<input type="hidden" th:field="*{id}"/>
+    		<input type="hidden" th:field="*{name}"/>
+    		<input type="hidden" th:field="*{directoryId}"/>
+    		<input type="hidden" th:field="*{status}"/>
+    		<h2><span th:text="*{name}">ディレクトリ名</span>を削除します</h2>
+    		<div class="text-center">
+    			<button type="submit">削除</button>
+    		</div>
+    	</form>
+    </div>    
+</body>
+</html>

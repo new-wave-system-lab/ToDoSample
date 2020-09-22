@@ -9,7 +9,7 @@
     		<input type="hidden" th:field="*{id}"/>
     		<div class="form-group">
     			<label for="name">ディレクトリ名</label>
-    			<input type="text" 
+    			<input class="form-control" type="text" 
     				th:errorclass="is-invalid"
     				th:field="*{name}"/>
     			<div class="invalid-feedback" th:errors="*{name}"></div>

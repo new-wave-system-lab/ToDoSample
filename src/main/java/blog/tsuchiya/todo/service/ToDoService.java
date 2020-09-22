@@ -27,4 +27,8 @@ public class ToDoService {
 	public void save(ToDo todo) {
 		toDoRep.save(todo);
 	}
+	
+	public void delete(Long id) {
+		toDoRep.deleteById(id);
+	}
 }
