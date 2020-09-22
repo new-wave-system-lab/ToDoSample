@@ -5,8 +5,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.validation.constraints.Max;
 import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Getter;
 import lombok.Setter;
@@ -21,7 +21,7 @@ public class ToDo {
 	private Long id;
 
 	@NotNull
-	@Max(100)
+	@Size(min=1, max=100)
 	private String name;
 	
 	@NotNull

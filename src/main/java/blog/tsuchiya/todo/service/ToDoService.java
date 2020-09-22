@@ -19,4 +19,12 @@ public class ToDoService {
 	public Page<ToDo> getByUserAndDirectory(ToDoUser user, Directory d, Pageable pageable){
 		return toDoRep.findByUserAndDirectory(user, d, pageable);
 	}
+	
+	public ToDo getToDo(Long id) {
+		return toDoRep.getOne(id);
+	}
+	
+	public void save(ToDo todo) {
+		toDoRep.save(todo);
+	}
 }
