@@ -65,13 +65,19 @@ public class DirectoryController {
 	}
 
 	@GetMapping("/{id}")
-	public String getDirectoryId(@PathVariable Long id, Model model, Pageable pageable) {
+	public String getDirectoryId(@PathVariable Long id, Model model, Pageable pageable) throws IllegalAccessException {
 		// idからディレクトリを取得
 		Directory d = dirService.findDirectoryById(id);
 		// ログインユーザ名からToDoUserを取得
 		ToDoUser todoUser = getToDoUser();
 		Page<ToDo> toDos = toDoService.getByUserAndDirectory(todoUser, d, pageable);
 
+		// ログイン中のユーザが保持するディレクトリか確認
+		Long currentUserId = todoUser.getId();
+		Long dirUserId = d.getUser().getId();
+		if (!currentUserId.equals(dirUserId)) {
+			throw new IllegalAccessException("アクセス権を持たないディレクトリを編集しようとしました。");
+		}
 		// 各種パラメータをモデルに格納
 		model.addAttribute("directory", d);
 		model.addAttribute("toDos", toDos);
@@ -84,7 +90,7 @@ public class DirectoryController {
 	public String getDirectoryEdit(@PathVariable Long id, Model model) throws IllegalAccessException {
 		// ログインユーザ名からToDoUserを取得
 		ToDoUser todoUser = getToDoUser();
-		
+
 		// idからディレクトリを取得
 		Directory d = dirService.findDirectoryById(id);
 
@@ -133,12 +139,12 @@ public class DirectoryController {
 		dirService.save(d);
 		return "redirect:/todo";
 	}
-	
+
 	@GetMapping("/{id}/delete")
 	public String getDirectoryDelete(@PathVariable Long id, Model model) throws IllegalAccessException {
 		// ログインユーザ名からToDoUserを取得
 		ToDoUser todoUser = getToDoUser();
-		
+
 		// idからディレクトリを取得
 		Directory d = dirService.findDirectoryById(id);
 
@@ -184,6 +190,7 @@ public class DirectoryController {
 		dirService.delete(d.getId());
 		return "redirect:/todo";
 	}
+
 	/**
 	 * ログインユーザ名からToDoUserを取得 ユーザー名はセッションから取り出すので、引数にして渡す必要はない
 	 * 
