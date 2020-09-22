@@ -5,27 +5,47 @@
 </head>
 <body>
 	<div class="content" th:fragment="list">
-		<table>
-			<tr>
-				<th>タイトル</th>
-				<th>状態</th>
-				<th></th>
-			</tr>
-			<tr th:each="toDo : ${toDos}">
-				<td th:text="*{name}">ToToタイトル</td>
-				<td>
-					<span class="bg-primary" 
-						th:if="*{status} == ToDoStatus.NOT_STARTED.getInt()">未着手</span>
-					<span class="bg-success" 
-						th:if="*{status} == ToDoStatus.PROGRESSING.getInt()">進行中</span>
-					<span class="bg-secondary" 
-						th:if="*{status} == ToDoStatus.END.getInt()">完了</span>
-				</td>
-				<td>
-					<a th:href="@{'/todo/' + *{id}}"></a>
-				</td>
-			</tr>
-		</table>
+		<div class="container">
+			<h2 th:text="${directory.name}">ディレクトリ名</h2>
+			<div class="row">
+				<div class="col-6">
+					<a th:href="@{'/dir/' + ${directory.id} + '/edit'}">このディレクトリを編集</a>
+				</div>
+				<div class="col-6">
+					<a th:href="@{'/dir/' + ${directory.id} + '/delete'}">このディレクトリを削除</a>
+				</div>
+			</div>
+			<table class="mt-3">
+				<tr>
+					<th>タイトル</th>
+					<th>状態</th>
+					<th></th>
+				</tr>
+				<tr th:each="toDo : ${toDos}">
+					<td th:text="${toDo.name}">ToDoタイトル</td>
+					<td><span class="bg-primary" th:if="${toDo.status} == 1">未着手</span>
+						<span class="bg-success" th:if="${toDo.status} == 2">進行中</span> <span
+						class="bg-secondary" th:if="${toDo.status} == 3">完了</span></td>
+					<td><a th:href="@{'/todo/' + ${toDo.id}} + '/edit'">編集</a> <a
+						th:href="@{'/todo/' + ${toDo.id}} + '/delete'">削除</a></td>
+				</tr>
+			</table>
+			<ul class="pagination">
+				<li th:class="|page-item ${toDos.first ? 'disabled' : ''}|"><a
+					class="page-link" aria-label="Previous"
+					th:href="@{''(page=${toDos.number - 1})}"> <span>&laquo;</span>
+				</a></li>
+				<li th:each='i : ${#numbers.sequence(0, toDos.totalPages-1)}'
+					th:class="|page-item ${(toDos.number == i) ? 'active' : ''}|"
+					style="display: inline"><a class="page-link"
+					th:href="@{''(page=${i})}"> <span th:text='${i + 1}'>1</span>
+				</a></li>
+				<li th:class="|page-item ${toDos.last ? 'disabled' : ''}|"><a
+					class="page-link" aria-label="Next"
+					th:href="@{''(page=${toDos.number + 1})}"> <span>&raquo;</span>
+				</a></li>
+			</ul>
+		</div>
 	</div>
 </body>
 </html>

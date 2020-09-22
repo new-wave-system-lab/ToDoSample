@@ -12,6 +12,9 @@
 		<header class="my-2">
 			<nav class="navbar navbar-dark bg-dark">
 				<a th:href="@{/}" class="navbar-brand">ToDoアプリ</a>
+				<form th:action="@{/logout}" method="post">
+					<button type="submit"class="btn text-light">ログアウト</button>
+				</form>
 			</nav>
 		</header>
 		<main>

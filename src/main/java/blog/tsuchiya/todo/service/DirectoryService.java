@@ -21,4 +21,8 @@ public class DirectoryService {
 	public void save(Directory d) {
 		dirRep.save(d);
 	}
+	
+	public Directory findDirectoryById(Long id) {
+		return dirRep.findById(id).get();
+	}
 }
