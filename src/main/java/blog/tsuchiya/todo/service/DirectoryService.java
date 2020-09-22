@@ -25,4 +25,8 @@ public class DirectoryService {
 	public Directory findDirectoryById(Long id) {
 		return dirRep.findById(id).get();
 	}
+	
+	public void delete(Long id) {
+		dirRep.deleteById(id);
+	}
 }
