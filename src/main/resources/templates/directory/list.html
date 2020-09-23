@@ -15,11 +15,11 @@
 					<a th:href="@{'/dir/' + ${directory.id} + '/delete'}">このディレクトリを削除</a>
 				</div>
 			</div>
-			<table class="mt-3">
+			<table class="mt-3 table table-bordered">
 				<tr>
 					<th>タイトル</th>
 					<th>状態</th>
-					<th></th>
+					<th>操作</th>
 				</tr>
 				<tr th:each="toDo : ${toDos}">
 					<td th:text="${toDo.name}">ToDoタイトル</td>

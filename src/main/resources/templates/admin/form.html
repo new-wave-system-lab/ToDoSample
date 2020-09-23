@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ja" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <div class="content" th:fragment="form">
+    	<form th:action="@{/admin/process}" th:object="${toDoUserForm}" method="post">
+    		<input type="hidden" th:field="*{id}"/>
+    		<div class="form-group">
+    			<label for="username">ログイン名</label>
+    			<input class="form-control" type="text" 
+    				th:errorclass="is-invalid"
+    				th:field="*{username}"/>
+    			<div class="invalid-feedback" th:errors="*{username}"></div>
+    		</div>
+    		<div class="form-group">
+    			<label for="password">パスワード</label>
+    			<input class="form-control" type="text" 
+    				th:errorclass="is-invalid"
+    				th:field="*{password}"/>
+    			<div class="invalid-feedback" th:errors="*{password}"></div>
+    		</div>
+    		<div class="form-group">
+    			<label for="nickname">表示名</label>
+    			<input class="form-control" type="text" 
+    				th:errorclass="is-invalid"
+    				th:field="*{nickname}"/>
+    			<div class="invalid-feedback" th:errors="*{nickname}"></div>
+    		</div>
+    		<div class="form-group">
+    			<label for="role">ロール</label>
+    			<select class="form-control" 
+    				th:errorclass="is-invalid"
+    				th:field="*{role}">
+    				<option th:each="role : ${roles}"
+    					th:value="${role}"
+    					th:text="${role}"></option>
+    			</select>
+    			<div class="invalid-feedback" th:errors="*{role}"></div>
+    		</div>
+    		<div class="text-center">
+    			<button type="submit">保存</button>
+    		</div>
+    	</form>
+    </div>    
+</body>
+</html>
