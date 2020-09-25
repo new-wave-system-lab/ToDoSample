@@ -9,15 +9,15 @@ import blog.tsuchiya.todo.interceptor.DirectoryIntercepter;
 
 @Configuration
 public class IntercepterConfig implements WebMvcConfigurer {
-	
+
 	@Autowired
 	private DirectoryIntercepter di;
-	
+
 	@Override
-    public void addInterceptors(InterceptorRegistry registry) {
-		// ルートとログアウトページ以外全てDirectoryIntercepterを実行
-        registry.addInterceptor(di)
-                .addPathPatterns("/**") 
-                .excludePathPatterns("/",  "/logout");
-    }
+	public void addInterceptors(InterceptorRegistry registry) {
+		// ルートとログアウトページ、静的なコンテンツ以外でDirectoryIntercepterを実行
+		registry.addInterceptor(di).
+			addPathPatterns("/**").
+			excludePathPatterns("/", "/logout", "/webjars/**", "/css/**");
+	}
 }
