@@ -47,6 +47,7 @@ public class DirectoryController {
 	@PostMapping("/create")
 	public String postDirectoryCreate(@Validated @ModelAttribute DirectoryForm directoryForm, BindingResult result,
 			Model model) {
+		System.out.println("------------into create-------------");
 		if (result.hasErrors()) {
 			model.addAttribute("contents", "layout/main :: main");
 			model.addAttribute("main", "directory/create :: create");

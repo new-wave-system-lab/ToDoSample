@@ -20,7 +20,7 @@ public class WithMockCustomUserSecurityContextFactory implements WithSecurityCon
 	 * AuthenticationManagerはデフォルトだとBeanじゃない。
 	 * WebSecurityConfigurerAdapterを継承したクラスで
 	 * public AuthenticationManager authenticationManagerBean()
-	 * をBeanとして実装する必要がある。
+	 * を@Beanとして実装する必要がある。
 	 */
 	@Autowired
 	private AuthenticationManager authenticationManager;

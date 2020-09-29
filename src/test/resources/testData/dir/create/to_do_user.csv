@@ -1,0 +1,3 @@
+"id","nickname","password","role","username"
+1,admin_nick,$2a$10$7XDJKECiR0LbKu6o1EsYqeJ6WY.IEW4DV1P5QWFsPnp66jaYfH5/i,ADMIN,admin
+2,user_nick,$2a$10$7XDJKECiR0LbKu6o1EsYqeJ6WY.IEW4DV1P5QWFsPnp66jaYfH5/i,USER,user

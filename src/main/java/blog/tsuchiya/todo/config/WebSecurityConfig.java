@@ -37,12 +37,18 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		// /だけ無条件で表示、それ以外は全部認証が必要
 		// /admin/以下は管理者権限を持っている場合のみ表示
-		http.authorizeRequests().antMatchers("/").permitAll().antMatchers("/admin/**").hasRole(Role.ADMIN.name())
-				.anyRequest().authenticated();
+		http.authorizeRequests().antMatchers("/").permitAll()
+			.antMatchers("/admin/**").hasRole(Role.ADMIN.name())
+			.anyRequest().authenticated();
 
 		// ログイン処理は/で行う
-		http.formLogin().loginProcessingUrl("/").loginPage("/").failureUrl("/").usernameParameter("userId")
-				.passwordParameter("password").defaultSuccessUrl("/todo", true);
+		http.formLogin()
+			.loginProcessingUrl("/")
+			.loginPage("/")
+			.failureUrl("/")
+			.usernameParameter("username")
+			.passwordParameter("password")
+			.defaultSuccessUrl("/todo", true);
 
 		// ログアウト処理
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutUrl("/logout")

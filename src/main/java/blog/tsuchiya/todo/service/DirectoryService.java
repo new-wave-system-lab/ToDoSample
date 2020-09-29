@@ -29,4 +29,8 @@ public class DirectoryService {
 	public void delete(Long id) {
 		dirRep.deleteById(id);
 	}
+	
+	public void flush() {
+		dirRep.flush();
+	}
 }
