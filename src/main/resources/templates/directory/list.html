@@ -26,8 +26,8 @@
 					<td><span th:each="status : ${statuses}"
 						th:if="${toDo.status} == ${status.status}"
 						th:class="${status.bgClass}" th:text="${status.name}"> </span></td>
-					<td><a th:href="@{'/todo/' + ${toDo.id}} + '/edit'">編集</a> <a
-						th:href="@{'/todo/' + ${toDo.id}} + '/delete'">削除</a></td>
+					<td><a th:href="@{'/todo/' + ${toDo.id} + '/edit'}">編集</a> <a
+						th:href="@{'/todo/' + ${toDo.id} + '/delete'}">削除</a></td>
 				</tr>
 			</table>
 			<ul class="pagination">
@@ -37,7 +37,7 @@
 				</a></li>
 				<li th:each='i : ${#numbers.sequence(0, toDos.totalPages-1)}'
 					th:class="|page-item ${(toDos.number == i) ? 'active' : ''}|"
-					style="display: inline"><a class="page-link"
+					style="display: inline" th:if="${i >= 0}"><a class="page-link"
 					th:href="@{''(page=${i})}"> <span th:text='${i + 1}'>1</span>
 				</a></li>
 				<li th:class="|page-item ${toDos.last ? 'disabled' : ''}|"><a
