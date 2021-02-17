@@ -48,7 +48,8 @@ class MainControllerTest {
 	@Test
 	@DisplayName("/では200が返ってくる")
 	void rootReturnStatus200() throws Exception{
-		this.mockMvc.perform(get("/"))
+		// ヘッダの値を指定できる。ここではhostを指定
+		this.mockMvc.perform(get("/").header("host", "test.localhost:80"))
 			.andExpect(status().isOk())
 			.andExpect(view().name("layout/layout"));
 	}
