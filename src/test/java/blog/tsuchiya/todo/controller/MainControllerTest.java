@@ -1,3 +1,9 @@
+/**
+ * ControllerからDBアクセスまでをカバーした結合テスト。
+ * DBへの接続はDBUnitを使ってモックを作ってある。
+ * SpringBootの起動が必要になるため、時間がかかる。
+ */
+
 package blog.tsuchiya.todo.controller;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -10,7 +16,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 import static org.hamcrest.Matchers.*;
 
-import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
