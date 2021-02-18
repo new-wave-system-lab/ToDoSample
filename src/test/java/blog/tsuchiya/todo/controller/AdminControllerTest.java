@@ -33,9 +33,12 @@ import blog.tsuchiya.todo.service.DirectoryService;
 import blog.tsuchiya.todo.service.ToDoUserService;
 import blog.tsuchiya.todo.service.UserDetailsServiceImpl;
 
+// テスト対象のControllerを指定する
 @WebMvcTest(controllers = AdminController.class)
+// MockMvcの設定を行う
 @AutoConfigureMockMvc
 public class AdminControllerTest {
+	// @AutoConfigureMockMvc アノテーションがあるので、 @Autowiredできる
 	@Autowired
 	private MockMvc mockMvc;
 
@@ -54,6 +57,8 @@ public class AdminControllerTest {
 
 	@Test
 	@DisplayName("管理者ユーザでユーザ登録画面が表示できる")
+	// ログインしているユーザを擬似的に追加。DWEではこの指定方法ではなく、
+	// blog.tsuchiya.todo.WithMockCustomUserを使うべきかもしれない。
 	@WithMockUser(username = "admin", roles = "ADMIN")
 	void getCreate() throws Exception {
 		// 各モックのメソッドを初期化、ここではDirectoryIntercepterで使われるメソッドの定義をしている
