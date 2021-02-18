@@ -1,5 +1,7 @@
 package blog.tsuchiya.todo.controller;
 
+import java.util.Arrays;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
@@ -43,30 +45,30 @@ public class AdminController {
 	@GetMapping("/create")
 	public String getAdminCreate(@ModelAttribute ToDoUserForm toDoUserForm, Model model) {
 		// 各種パラメータをモデルに格納
-		model.addAttribute("roles", Role.values());
+		model.addAttribute("roles", Arrays.asList(Role.values()));
 		model.addAttribute("contents", "layout/main :: main");
 		model.addAttribute("main", "admin/form :: form");
 		return "layout/layout";
 
 	}
-	
+
 	@GetMapping("/{id}/edit")
 	public String getAdminEdit(@PathVariable Long id, @ModelAttribute ToDoUserForm toDoUserForm, Model model) {
 		// idからユーザー情報を取得
 		ToDoUser user = userService.getUserById(id);
-		
+
 		// DBのユーザー情報をFormに格納
 		toDoUserForm.setId(id);
-		toDoUserForm.setUsername(user.getUsername());;
+		toDoUserForm.setUsername(user.getUsername());
 		toDoUserForm.setNickname(user.getNickname());
 		toDoUserForm.setRole(user.getRole());
-		
+
 		// 各種パラメータをモデルに格納
 		model.addAttribute("roles", Role.values());
 		model.addAttribute("contents", "layout/main :: main");
 		model.addAttribute("main", "admin/form :: form");
 		return "layout/layout";
-		
+
 	}
 
 	@PostMapping("/process")
@@ -85,25 +87,25 @@ public class AdminController {
 		user.setPassword(passwordEncoder.encode(toDoUserForm.getPassword()));
 		user.setNickname(toDoUserForm.getNickname());
 		user.setRole(toDoUserForm.getRole());
-		
+
 		userService.save(user);
-		
+
 		return "redirect:/admin/list";
 	}
-	
+
 	@GetMapping("/{id}/delete")
-	public String getAdminDelete(@PathVariable Long id, Model model){
+	public String getAdminDelete(@PathVariable Long id, Model model) {
 		// idからユーザー情報を取得
 		ToDoUser user = userService.getUserById(id);
-		
+
 		// 各種パラメータをモデルに格納
 		model.addAttribute("username", user.getUsername());
 		model.addAttribute("contents", "layout/main :: main");
 		model.addAttribute("main", "admin/delete :: delete");
 		return "layout/layout";
-		
+
 	}
-	
+
 	@PostMapping("/{id}/delete")
 	public String postAdminDelete(@PathVariable Long id, Model model) {
 		userService.delete(id);
