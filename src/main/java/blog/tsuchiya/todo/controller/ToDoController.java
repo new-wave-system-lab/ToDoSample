@@ -4,7 +4,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -81,7 +81,7 @@ public class ToDoController {
 	}
 
 	private List<Directory> getDirectories() {
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		ToDoUser todoUser = userService.getToDoUserByName(user.getUsername());
 		List<Directory> directories = dirService.getDirectoriesByUserId(todoUser.getId());
 		return directories;
@@ -208,7 +208,7 @@ public class ToDoController {
 	 * @return ToDoUser
 	 */
 	private ToDoUser getToDoUser() {
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		ToDoUser todoUser = userService.getToDoUserByName(user.getUsername());
 		return todoUser;
 	}

@@ -8,7 +8,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
@@ -43,7 +43,7 @@ public class DirectoryIntercepter implements HandlerInterceptor {
 		} else {
 			//そうじゃなかったら、DBから取り出して格納する
 			var principal = auth.getPrincipal();
-			User user = (User) principal;
+			UserDetails user = (UserDetails) principal;
 			ToDoUser todoUser = userService.getToDoUserByName(user.getUsername());
 			 dirs = dirService.getDirectoriesByUserId(todoUser.getId());
 		}

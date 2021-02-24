@@ -23,14 +23,11 @@ public class ToDoUser {
 	private Long id;
 	
 	@NotNull
-	@Size(min=4, max=20)
+	@Size(min=4, max=100)
 	private String username;
 	
-	@NotNull
-	@Size(min=4, max=255)
 	private String password;
 	
-	@NotNull
 	@Size(min=4, max=20)
 	private String nickname;
 	

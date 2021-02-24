@@ -12,6 +12,10 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
+import org.springframework.security.oauth2.client.oidc.userinfo.OidcUserService;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserRequest;
+import org.springframework.security.oauth2.client.userinfo.OAuth2UserService;
+import org.springframework.security.oauth2.core.user.OAuth2User;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 import blog.tsuchiya.todo.Role;
@@ -22,6 +26,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 	private final UserDetailsService uds;
+	private final OidcUserService oidcUserService;
+	private final OAuth2UserService<OAuth2UserRequest, OAuth2User> o2us;
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
@@ -54,6 +60,14 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
 		http.logout().logoutRequestMatcher(new AntPathRequestMatcher("/logout")).logoutUrl("/logout")
 				.logoutSuccessUrl("/");
 
+		// Oauth2設定
+		http.oauth2Login()
+			.defaultSuccessUrl("/todo", true)
+			.userInfoEndpoint()
+				// OAuth2とOidcのユーザサービス設定
+				.oidcUserService(oidcUserService)
+				.userService(o2us);
+		
 	}
 
 	@Override

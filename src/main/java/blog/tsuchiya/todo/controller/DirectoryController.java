@@ -5,6 +5,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.core.userdetails.User;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -199,7 +200,7 @@ public class DirectoryController {
 	 * @return ToDoUser
 	 */
 	private ToDoUser getToDoUser() {
-		User user = (User) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		UserDetails user = (UserDetails) SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		ToDoUser todoUser = userService.getToDoUserByName(user.getUsername());
 		return todoUser;
 	}

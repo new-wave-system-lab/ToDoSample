@@ -15,13 +15,18 @@
 					th:text="${session['SPRING_SECURITY_LAST_EXCEPTION'].message}">
 					ログインエラーメッセージ</p>
 				<!-- ユーザーID -->
-				<label>ユーザーID</label> <input type="text" name="username" /><br /> <br />
+				<label>ユーザーID</label> <input type="text" name="username" /><br />
+				<br />
 				<!-- パスワード -->
 				<label>パスワード</label> <input type="password" name="password" /><br />
 				<br />
 				<!-- ログインボタン -->
 				<button class="btn btn-primary" type="submit">ログイン</button>
 			</form>
+			<hr>
+			<div>
+				<a class="btn btn-primary" href="/oauth2/authorization/google">Googleでログイン</a>
+			</div>
 		</div>
 	</div>
 </body>
